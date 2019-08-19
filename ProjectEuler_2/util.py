@@ -460,7 +460,7 @@ def divisorsonly(n=-1, primes=[], r=-1):
 
 #    data[] ---> Temporary array to store current combination
 
-#    start & end ---> Staring and Ending indexes in arr[]
+#    start & end ---> Starting and Ending indexes in arr[]
 
 #    index  ---> Current index in data[]
 
