@@ -11,33 +11,41 @@
 import numpy as np
 import math
 import itertools
+from datetime import datetime
 
 
 def sumofnumsnotsumsofabundants(n):
 
-    divisors = np.arange(1, n // 2)
-
-    d = {}
+    #     divisors = np.arange(1, n // 2 + 1)
 
     abundants = []
+    sumsofabundantpairs = []
+    temp = []
 
-    for i in range(1, n):
-        temp = np.array([m for m in divisors if i % m == 0 and not m == i])
+    t0 = datetime.now()
+
+    for i in range(1, n + 1):
+        temp = np.array([m for m in np.arange(1, i // 2 + 1) if i %
+                         m == 0 and not m == i])
         y = temp.sum()
-        d[i] = y
+
+        if i % 1000 == 0:
+            print(datetime.now() - t0)
+            t0 = datetime.now()
+
         if y > i:
+            #             print(i, len(abundants))
+            temp = [i + x for x in abundants if x != i]
             abundants.append(i)
-
-    abundantsums = []
-
-    for i in abundants:
-        for n in abundants:
-            if n != i:
-                abundantsums.append(i + n)
+            sumsofabundantpairs.extend(temp)
+            sumsofabundantpairs = list(dict.fromkeys(sumsofabundantpairs))
 
     allthenums = range(1, n + 1)
 
-    return sum(list(set(allthenums) - set(abundantsums)))
+    sumslow = [x for x in sumsofabundantpairs if x <= 28123]
+    notapair = [x for x in allthenums if x not in sumslow]
+
+    return sum(notapair)
 
 
 n = 28123
