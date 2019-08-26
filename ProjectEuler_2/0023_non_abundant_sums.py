@@ -29,7 +29,7 @@ def sumofnumsnotsumsofabundants(n):
 
     for i in range(1, n + 1):
         temp = np.array([m for m in np.arange(1, i // 2 + 1) if i %
-                         m == 0 and m < i])
+                         m == 0 and m <= i])
         y = temp.sum()
 
         if i % 1000 == 0:
